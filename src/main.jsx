@@ -7,7 +7,8 @@ export default class EditableLabel extends React.Component {
 
         this.state = {
         	isEditing: this.props.isEditing || false,
-			text: this.props.text || "",
+          text: this.props.text || "",
+          videoId: this.props.videoId || ""
         };
         
         this._handleFocus = this._handleFocus.bind(this);
@@ -17,7 +18,7 @@ export default class EditableLabel extends React.Component {
     _handleFocus() {
     	if(this.state.isEditing) {
         	if(typeof this.props.onFocusOut === 'function') {
-        		this.props.onFocusOut(this.state.text);
+        		this.props.onFocusOut(this.state.text, this.state.videoId);
             }
         }
         else {
@@ -77,6 +78,8 @@ export default class EditableLabel extends React.Component {
 EditableLabel.propTypes = {
     text: PropTypes.string.isRequired,
     isEditing: PropTypes.bool,
+
+    videoId: PropTypes.string,
 
     labelClassName: PropTypes.string,
     labelFontSize: PropTypes.string,
